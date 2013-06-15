@@ -9,7 +9,7 @@ to prevent a single large line from spiraling outwards into the shelves and
 blocking customer traffic, but I was curious as to whether this arrangement has
 any effect on the total time to serve a given number of customers or the average
 time to serve a customer from the point of enqueueing to the point of leaving
-the kiosk or any number of other factors.
+the kiosk or the variance on that time or any number of other factors.
 
 Right now I haven't implemented any of the analysis logic, but the basic
 mechanism of the simulation is there. Customers are assigned a random checkout
