@@ -18,8 +18,11 @@ sends every new customer to the shortest line. Lines feed into kiosks, where the
 customer checks out for an amount of time equal to their checkout duration. The
 number of lines is equal to or less than the number of kiosks.
 
-To run:
-    .. code:: 
+Quick start
+-----------
+
+Run queueing:
+
     python -m queueing -h
     usage: __main__.py [-h] customers lines kiosks
     
