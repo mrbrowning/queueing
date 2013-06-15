@@ -13,10 +13,11 @@ the kiosk or any number of other factors.
 
 Right now I haven't implemented any of the analysis logic, but the basic
 mechanism of the simulation is there. Customers are assigned a random checkout
-duration in milliseconds when they're spawned by a global customer source, which
-sends every new customer to the shortest line. Lines feed into kiosks, where the
-customer checks out for an amount of time equal to their checkout duration. The
-number of lines is equal to or less than the number of kiosks.
+duration in milliseconds when they're spawned by a global customer source
+thread, which sends every new customer to the shortest line. Lines feed into
+kiosk threads, where the customer checks out for an amount of time equal to
+their checkout duration. The number of lines is equal to or less than the number
+of kiosks.
 
 Quick start
 -----------
