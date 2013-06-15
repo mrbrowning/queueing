@@ -19,6 +19,13 @@ kiosk threads, where the customer checks out for an amount of time equal to
 their checkout duration. The number of lines is equal to or less than the number
 of kiosks.
 
+Some things I'm thinking about as I proceed: should customers be able to switch
+to a line that becomes shorter than the one they're waiting on? Should checkout
+time be modeled based on number of items rather just assigning a random
+duration? If so, should checkout time include a fixed base checkout duration on
+top of which the time per item durations are added? Do any of those improve the
+model with respect to the phenomenon of interest?
+
 Finally, I'm aware that queueing theory probably has something to say about
 this, but the only result from that particular branch of mathematics that I'm
 familiar with is Little's Law, and this seemed like a fun project for a Saturday
