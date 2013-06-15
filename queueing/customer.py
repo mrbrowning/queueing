@@ -26,7 +26,8 @@ MAX_ENQUEUE_DURATION = 45
 class Customer(object):
     """A customer, who takes a certain time to check out."""
 
-    def __init__(self, customer_source, customer_id=None, checkout_duration=None):
+    def __init__(
+            self, customer_source, customer_id=None, checkout_duration=None):
         self.customer_source = customer_source
         self.id = customer_id if customer_id is not None else (
             random.randint(0, self.customer_source.num_customers)
