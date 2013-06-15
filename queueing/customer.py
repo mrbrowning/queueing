@@ -13,6 +13,8 @@ import random
 import time
 import threading
 
+from .resources import StoppableThread
+
 
 MIN_CHECKOUT_DURATION = 60
 MAX_CHECKOUT_DURATION = 360
@@ -29,8 +31,10 @@ class Customer(object):
         self.id = customer_id if customer_id is not None else (
             random.randint(0, self.customer_source.num_customers)
         )
-        self.checkout_duration = if checkout_duration is not None else (
-            random.randint(MIN_CHECKOUT_DURATION, MAX_CHECKOUT_DURATION)
+        self.checkout_duration = (
+            checkout_duration if checkout_duration is not None else (
+                random.randint(MIN_CHECKOUT_DURATION, MAX_CHECKOUT_DURATION)
+            )
         )
 
     def checkout(self):
@@ -43,7 +47,7 @@ class Customer(object):
         )
 
 
-class CustomerSource(threading.Thread):
+class CustomerSource(StoppableThread):
     """A customer source that generates customers at random intervals."""
 
     def __init__(self, num_customers, *lines):
@@ -58,7 +62,7 @@ class CustomerSource(threading.Thread):
         """Add customers to the shortest line until `self.num_customers`
         customers have been created.
         """
-        while self.created < self.num_customers:
+        while self.created < self.num_customers and not self._stop.isSet():
             min(self.lines, key=lambda x: x.qsize()).put(Customer(self, self.created))
             self.created += 1
             time.sleep(
@@ -69,7 +73,7 @@ class CustomerSource(threading.Thread):
         # We want this thread to live until all customers have been served.
         # That way, the other threads can be daemon threads and the program can
         # exit when this thread completes.
-        while self.served < self.num_customers:
+        while self.served < self.num_customers and not self._stop.isSet():
             pass
 
     def increment_served(self):

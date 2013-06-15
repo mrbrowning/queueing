@@ -12,8 +12,10 @@
 import threading
 import Queue
 
+from .resources import StoppableThread
 
-class Kiosk(threading.Thread):
+
+class Kiosk(StoppableThread):
     """A kiosk that customers check out at."""
 
     def __init__(self, line, kiosk_id):
@@ -23,7 +25,7 @@ class Kiosk(threading.Thread):
         self.daemon = True
 
     def run(self):
-        while True:
+        while not self._stop.isSet():
             try:
                 customer = self.line.get()
                 print 'Customer %d at kiosk %d.' % (customer.id, self.id)

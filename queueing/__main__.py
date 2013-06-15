@@ -40,9 +40,16 @@ def main(argv):
     divisor = int(math.ceil(float(args.kiosks) / float(args.lines)))
     kiosks = [Kiosk(lines[i / divisor], i) for i in xrange(args.kiosks)]
 
-    for k in kiosks:
-        k.start()
-    customer_source.start()
+    try:
+        for k in kiosks:
+            k.start()
+        customer_source.start()
+        customer_source.join(5)
+    except (KeyboardInterrupt, SystemExit):
+        sys.stderr.write('Quitting...\n')
+        customer_source.stop()
+        for k in kiosks:
+            k.stop()
 
 if __name__ == '__main__':
     main(sys.argv)
