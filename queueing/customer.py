@@ -29,14 +29,13 @@ class Customer(object):
         self.id = customer_id if customer_id is not None else (
             random.randint(0, self.customer_source.num_customers)
         )
-        self.checkout_duration = (
-            checkout_duration or
+        self.checkout_duration = if checkout_duration is not None else (
             random.randint(MIN_CHECKOUT_DURATION, MAX_CHECKOUT_DURATION)
         )
 
     def checkout(self):
         """Simulate checking out by blocking for a duration equal to
-        `self.checkout_duration` microseconds."""
+        `self.checkout_duration` milliseconds."""
         time.sleep(float(self.checkout_duration) / 1000.0)
         self.customer_source.increment_served()
         print 'Customer %d checked out (%d ms).' % (
