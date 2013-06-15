@@ -19,6 +19,11 @@ kiosk threads, where the customer checks out for an amount of time equal to
 their checkout duration. The number of lines is equal to or less than the number
 of kiosks.
 
+Finally, I'm aware that queueing theory probably has something to say about
+this, but the only result from that particular branch of mathematics that I'm
+familiar with is Little's Law, and this seemed like a fun project for a Saturday
+morning.
+
 Quick start
 -----------
 
