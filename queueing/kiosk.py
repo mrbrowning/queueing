@@ -16,7 +16,7 @@ import Queue
 class Kiosk(threading.Thread):
     """A kiosk that customers check out at."""
 
-    def __init__(self, line, kiosk_id=None):
+    def __init__(self, line, kiosk_id):
         super(Kiosk, self).__init__()
         self.line = line
         self.id = kiosk_id
