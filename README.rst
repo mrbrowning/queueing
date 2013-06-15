@@ -19,7 +19,7 @@ customer checks out for an amount of time equal to their checkout duration. The
 number of lines is equal to or less than the number of kiosks.
 
 To run:
-  .. code:: 
+    .. code:: 
     python -m queueing -h
     usage: __main__.py [-h] customers lines kiosks
     
