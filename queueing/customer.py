@@ -37,7 +37,8 @@ class Customer(object):
 
     def checkout(self):
         """Simulate checking out by blocking for a duration equal to
-        `self.checkout_duration` milliseconds."""
+        `self.checkout_duration` milliseconds.
+        """
         time.sleep(self.checkout_duration / 1000.0)
         self.customer_source.increment_served()
         print 'Customer %d checked out (%d ms).' % (
