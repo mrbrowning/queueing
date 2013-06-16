@@ -55,7 +55,7 @@ class CustomerSource(StoppableThread):
         self.lines = lines
         self.created = 0
         self.served = 0
-        self.lock = threading.Lock()
+        self._lock = threading.Lock()
 
     def run(self):
         """Add customers to the shortest line until `self.num_customers`
@@ -77,6 +77,6 @@ class CustomerSource(StoppableThread):
 
     def increment_served(self):
         """Increment the number of customers served thread-safely."""
-        self.lock.acquire()
+        self._lock.acquire()
         self.served += 1
-        self.lock.release()
+        self._lock.release()
